@@ -10,18 +10,28 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 3), () {
+      Get.toNamed(AppRoute.onbording);
+    });
+  }
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: AppColor.textwhite,
       statusBarIconBrightness: Brightness.dark
     ));
-    Timer(const Duration(seconds: 3), () {
-      Get.toNamed(AppRoute.onbording);
-    });
+    
     return SafeArea(
       child: Scaffold(
           body: GradientContainer(

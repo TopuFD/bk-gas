@@ -1,3 +1,5 @@
+
+import 'package:bk_gas/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
@@ -14,12 +16,11 @@ class GradientContainer extends StatelessWidget {
       width: Get.width,
       decoration: const BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
               colors: [
-            Color(0xFFFFFFFF),
-            Color(0xFFFFFFFF),
-            Color.fromARGB(255, 165, 165, 179),
+            AppColor.textwhite,
+            Color(0xFF7F8B8D),
           ])),
       child: child,
     );

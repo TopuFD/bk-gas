@@ -1,3 +1,4 @@
+import 'package:bk_gas/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/utils/image.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
@@ -24,21 +25,24 @@ class OnbordingScreen extends StatelessWidget {
               ),
               Align(
                   alignment: Alignment.topRight,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(color: AppColor.primaryColor),
-                        borderRadius: BorderRadius.circular(20.r)),
-                    child: Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
-                      child: Text(
-                        'Skip',
-                        style: TextStyle(
-                          color: AppColor.primaryColor,
-                          fontSize: 16.sp,
-                          fontFamily: 'Open Sans',
-                          fontWeight: FontWeight.w600,
-                          height: 0,
+                  child: InkWell(
+                    onTap: () => Get.offNamed(AppRoute.loginScreen),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: AppColor.primaryColor),
+                          borderRadius: BorderRadius.circular(20.r)),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.w, vertical: 5.h),
+                        child: Text(
+                          'Skip',
+                          style: TextStyle(
+                            color: AppColor.primaryColor,
+                            fontSize: 16.sp,
+                            fontFamily: 'Open Sans',
+                            fontWeight: FontWeight.w600,
+                            height: 0,
+                          ),
                         ),
                       ),
                     ),
@@ -49,8 +53,14 @@ class OnbordingScreen extends StatelessWidget {
                 width: Get.width,
               ),
               const Expanded(child: SizedBox()),
-              CustomBodyBtn(title: "Get Started", ontap: () {}),
-              SizedBox(height: 60.h,)
+              CustomBodyBtn(
+                  title: "Get Started",
+                  ontap: () {
+                    Get.offNamed(AppRoute.loginScreen);
+                  }),
+              SizedBox(
+                height: 60.h,
+              )
             ],
           ),
         )),
