@@ -14,7 +14,7 @@ class BottomBarScreen extends StatelessWidget {
 
   final RxInt currentIndex = 0.obs;
   final List<Widget> pages = [
-     HomeScreen(),
+     const HomeScreen(),
     const CartScreen(),
     const OrderScreen(),
     const AccountScreen()

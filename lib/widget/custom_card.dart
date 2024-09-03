@@ -65,7 +65,7 @@ class CustomCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SvgPicture.asset(AppImage.koinImage),
-                      DocumentText(documentText: "100")
+                      const DocumentText(documentText: "100")
                     ],
                   )
                 ],

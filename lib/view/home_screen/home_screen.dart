@@ -1,3 +1,4 @@
+import 'package:bk_gas/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/utils/image.dart';
 import 'package:bk_gas/widget/custom_card.dart';
@@ -10,7 +11,7 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -52,12 +53,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    //search bar here======================================================>
                     SizedBox(
                         width: Get.width / 1.5,
                         child: CustomTextFormField(
                             hintText: "Search", controller: searchController)),
                     InkWell(
-                      onTap: (){},
+                      onTap: () {
+                        Get.toNamed(AppRoute.searchScreen,arguments: {
+                          "searchText": searchController,
+                        });
+                      },
                       child: Container(
                         height: 50.h,
                         width: 74.w,
@@ -82,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               //catagory start here===============================================>
-              
+
               SizedBox(
                 height: 20.h,
               ),
@@ -97,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           setState(() {
                             currentIndex = index;
                           });
-        
+
                           debugPrint(index.toString());
                         },
                         child: CustomCatagory(
@@ -131,23 +137,33 @@ class _HomeScreenState extends State<HomeScreen> {
               //         }),
               //   );
               // })
-        
+
               // product list here=========================================>
-              SizedBox(height: 20.h,),
-              
+              SizedBox(
+                height: 20.h,
+              ),
+
               Expanded(
                 child: GridView.builder(
-                  itemCount: 10,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                        crossAxisCount: 2,
-                        childAspectRatio: 0.62),
+                    itemCount: 10,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            crossAxisCount: 2,
+                            childAspectRatio: 0.62),
                     itemBuilder: (context, index) {
-                      return CustomCard(imagePath: AppImage.productImage, title: 'My Dream', price: '212.99', weight: '6',);
+                      return CustomCard(
+                        imagePath: AppImage.productImage,
+                        title: 'My Dream',
+                        price: '212.99',
+                        weight: '6',
+                      );
                     }),
               ),
-              SizedBox(height: 10.h,),
+              SizedBox(
+                height: 10.h,
+              ),
             ],
           ),
         ),
@@ -261,13 +277,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-              // SizedBox(
-              //   height: 50.h,
-              //   width: Get.width,
-              //   child: ListView.builder(
-              //     scrollDirection: Axis.horizontal,
-              //       itemCount: 4,
-              //       itemBuilder: (context, index) {
-              //         return CustomCatagory(title: "6kg", index: index);
-              //       }),
-              // )
