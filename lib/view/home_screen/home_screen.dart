@@ -10,15 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  List catagory = [
+class HomeScreen extends StatelessWidget {
+   HomeScreen({super.key});
+    List catagory = [
     "All Item",
     "6 kg",
     "12 kg",
@@ -27,8 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   TextEditingController searchController = TextEditingController();
 
-  int currentIndex = 0;
-  // RxInt currentIndex = 0.obs;
+  RxInt currentIndex = 0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -87,56 +80,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
+              SizedBox(height: 30.h,),
               //catagory start here===============================================>
-
               SizedBox(
-                height: 20.h,
-              ),
-              SizedBox(
-                height: 40.h,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: catagory.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            currentIndex = index;
-                          });
-
-                          debugPrint(index.toString());
-                        },
-                        child: CustomCatagory(
-                          title: catagory[index],
-                          index: index,
-                          currentIndex: currentIndex,
-                        ),
-                      );
-                    }),
-              ),
-              // Obx(() {
-              //   return SizedBox(
-              //     height: 50.h,
-              //     child: ListView.builder(
-              //         scrollDirection: Axis.horizontal,
-              //         itemCount: catagory.length,
-              //         itemBuilder: (context, index) {
-              //           return GestureDetector(
-              //             onTap: () {
-              //               currentIndex.value = index;
-              //               debugPrint(index.toString());
-              //             },
-              //             child: CustomCatagory(
-              //               title: catagory[index],
-              //               index: index,
-              //               // ignore: unrelated_type_equality_checks
-              //               color: currentIndex.value == index?AppColor.primaryColor:AppColor.textwhite,
-              //             ),
-              //           );
-              //         }),
-              //   );
-              // })
-
+                  height: 40.h,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: catagory.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding:  EdgeInsets.only(right: 10.w),
+                          child: CustomCatagory(
+                            title: catagory[index],
+                            index: index,
+                           currentIndex: currentIndex,
+                          ),
+                        );
+                      }),
+                ),
               // product list here=========================================>
               SizedBox(
                 height: 20.h,
