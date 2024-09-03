@@ -1,5 +1,7 @@
+import 'package:bk_gas/controller/cart_controleler.dart';
 import 'package:bk_gas/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
+import 'package:bk_gas/widget/check_out_card.dart';
 import 'package:bk_gas/widget/custom_appber.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
 import 'package:bk_gas/widget/heading_text.dart';
@@ -12,7 +14,7 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({super.key});
-
+  CartControleler cartControleler = Get.put(CartControleler());
   RxInt productCount = 1.obs;
   @override
   Widget build(BuildContext context) {
@@ -153,7 +155,16 @@ class ProductDetailsScreen extends StatelessWidget {
                     color: AppColor.textwhite,
                   ),
                   title: "Add To Cart | \$${Get.arguments["price"]}",
-                  ontap: () {}),
+                  ontap: () {
+                    cartControleler.checkOutItem.add(CheckOutCard(
+                      imagePath: Get.arguments["imagePath"],
+                      title: Get.arguments["title"],
+                      price: Get.arguments["price"],
+                      weight: Get.arguments["weight"],
+                      productCount: productCount,
+                    ));
+                    debugPrint("cart added");
+                  }),
               SizedBox(
                 height: 10.h,
               ),

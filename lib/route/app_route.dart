@@ -4,6 +4,7 @@ import 'package:bk_gas/view/authe_screen/login_screen.dart';
 import 'package:bk_gas/view/authe_screen/profile_setup.dart';
 import 'package:bk_gas/view/authe_screen/signup_screen.dart';
 import 'package:bk_gas/view/bottom_bar.dart';
+import 'package:bk_gas/view/cart_screen/checkout_screen.dart';
 import 'package:bk_gas/view/details_screen/product_details_screen.dart';
 import 'package:bk_gas/view/details_screen/read_more.dart';
 import 'package:bk_gas/view/home_screen/notification_screen.dart';
@@ -24,6 +25,7 @@ class AppRoute {
   static String notificationScreen = "/notificationScreen";
   static String productDetailsScreen = "/productDetailsScreen";
   static String readMoreScreen = "/readMoreScreen";
+  static String checkoutScreen = "/checkoutScreen";
 }
 
 List<GetPage> getPage = [
@@ -38,4 +40,5 @@ List<GetPage> getPage = [
   GetPage(name: AppRoute.notificationScreen, page: () =>const NotificationScreen(),transition: Transition.fade,),
   GetPage(name: AppRoute.productDetailsScreen, page: () => ProductDetailsScreen(),transition: Transition.fade,),
   GetPage(name: AppRoute.readMoreScreen, page: () =>const ReadMore(),transition: Transition.fade,),
+  GetPage(name: AppRoute.checkoutScreen, page: () => CheckoutScreen(),transition: Transition.fade,),
 ];
