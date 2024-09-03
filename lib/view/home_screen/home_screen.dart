@@ -109,7 +109,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: CustomCatagory(
                           title: catagory[index],
                           index: index,
-                          // ignore: unrelated_type_equality_checks
                           currentIndex: currentIndex,
                         ),
                       );

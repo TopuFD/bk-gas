@@ -4,4 +4,5 @@ class AppImage {
   static const String accountImage = "assets/images/account.png";
   static const String productImage = "assets/images/product.png";
   static const String koinImage = "assets/images/Coin.svg";
+  static const String cartImage = "assets/images/cartImage.png";
 }
