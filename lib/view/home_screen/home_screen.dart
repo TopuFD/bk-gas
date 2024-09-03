@@ -154,6 +154,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             childAspectRatio: 0.62),
                     itemBuilder: (context, index) {
                       return CustomCard(
+                        ontap: () {
+                          Get.toNamed(AppRoute.productDetailsScreen,
+                              arguments: {
+                                "imagePath":AppImage.productImage,
+                                "title":"My Dream",
+                                "subtitle":"Their size is particularly beneficial for small-scale operations or mobile services that require gas mobility.",
+                                "weight":"6",
+                                "price" : "212.99",
+
+                              });
+                        },
                         imagePath: AppImage.productImage,
                         title: 'My Dream',
                         price: '212.99',
