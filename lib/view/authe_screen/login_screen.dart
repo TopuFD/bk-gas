@@ -67,12 +67,18 @@ class LoginScreen extends StatelessWidget {
                       controller: passController,
                       textFieldHeading: "Email",
                       prefixIcon: const Icon(Icons.key),
-                      suffixIcon:  IconButton(onPressed: (){}, icon:const Icon(Icons.visibility_off)),
+                      suffixIcon: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(Icons.visibility_off)),
                       obscureText: true,
                       keyboardType: TextInputType.number,
                     ),
                     const Expanded(child: SizedBox()),
-                    CustomBodyBtn(title: "LogIn", ontap: () {}),
+                    CustomBodyBtn(
+                        title: "LogIn",
+                        ontap: () {
+                          Get.toNamed(AppRoute.bottomBarScreen);
+                        }),
                     const Expanded(child: SizedBox()),
                     RichText(
                         text: TextSpan(children: [

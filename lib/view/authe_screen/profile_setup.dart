@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:bk_gas/controller/image_controller.dart';
+import 'package:bk_gas/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/widget/custom_appber.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
@@ -114,6 +115,7 @@ class ProfileSetup extends StatelessWidget {
                       SizedBox(
                         height: 15.h,
                       ),
+                      // address fields start from here============================>
                       CustomTextFormField(
                         hintText: "Email",
                         controller: emailController,
@@ -154,7 +156,11 @@ class ProfileSetup extends StatelessWidget {
                       SizedBox(
                         height: 30.h,
                       ),
-                      CustomBodyBtn(title: "Continue", ontap: () {})
+                      CustomBodyBtn(
+                          title: "Continue",
+                          ontap: () {
+                            Get.toNamed(AppRoute.bottomBarScreen);
+                          })
                     ]),
               ),
             ),
