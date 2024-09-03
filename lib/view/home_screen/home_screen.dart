@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             hintText: "Search", controller: searchController)),
                     InkWell(
                       onTap: () {
-                        Get.toNamed(AppRoute.searchScreen,arguments: {
+                        Get.toNamed(AppRoute.searchScreen, arguments: {
                           "searchText": searchController,
                         });
                       },
@@ -230,7 +230,9 @@ class _HomeScreenState extends State<HomeScreen> {
           Row(
             children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(AppRoute.notificationScreen);
+                  },
                   icon: Stack(
                     children: [
                       Icon(
@@ -240,7 +242,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Positioned(
                           top: 0,
-                          right: 3,
+                          right: 3.w,
                           child: Container(
                             decoration: const BoxDecoration(
                                 color: AppColor.colorRed,

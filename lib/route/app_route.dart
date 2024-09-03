@@ -4,6 +4,7 @@ import 'package:bk_gas/view/authe_screen/login_screen.dart';
 import 'package:bk_gas/view/authe_screen/profile_setup.dart';
 import 'package:bk_gas/view/authe_screen/signup_screen.dart';
 import 'package:bk_gas/view/bottom_bar.dart';
+import 'package:bk_gas/view/home_screen/notification_screen.dart';
 import 'package:bk_gas/view/home_screen/search_screen.dart';
 import 'package:bk_gas/view/splash_screen/onbording.dart';
 import 'package:bk_gas/view/splash_screen/splash.dart';
@@ -18,6 +19,7 @@ class AppRoute {
   static String profileSetup = "/profileSetup";
   static String bottomBarScreen = "/bottomBarScreen";
   static String searchScreen = "/searchScreen";
+  static String notificationScreen = "/notificationScreen";
 }
 
 List<GetPage> getPage = [
@@ -29,4 +31,5 @@ List<GetPage> getPage = [
   GetPage(name: AppRoute.profileSetup, page: () =>ProfileSetup(),transition: Transition.leftToRight,),
   GetPage(name: AppRoute.bottomBarScreen, page: () =>BottomBarScreen(),transition: Transition.leftToRight,),
   GetPage(name: AppRoute.searchScreen, page: () =>SearchBarScreen(),transition: Transition.leftToRight,),
+  GetPage(name: AppRoute.notificationScreen, page: () =>const NotificationScreen(),transition: Transition.fadeIn,),
 ];
