@@ -10,7 +10,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType keyboardType;
   final bool obscureText;
   final Icon? prefixIcon;
-  final Icon? suffixIcon;
+  final IconButton? suffixIcon;
   final String? textFieldHeading;
 
   const CustomTextFormField({
