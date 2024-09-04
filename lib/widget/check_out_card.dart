@@ -13,7 +13,7 @@ class CheckOutCard extends StatelessWidget {
     required this.title,
     required this.price,
     required this.weight,
-    required,
+    this.orderId,
     required this.productCount,
   });
   String imagePath;
@@ -21,6 +21,7 @@ class CheckOutCard extends StatelessWidget {
   String price;
   String weight;
   RxInt productCount;
+  String? orderId;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -135,7 +136,9 @@ class CheckOutCard extends StatelessWidget {
                         )),
                       ),
                     ),
-                    SizedBox(width: 10.w,)
+                    SizedBox(
+                      width: 10.w,
+                    )
                   ],
                 );
               })),

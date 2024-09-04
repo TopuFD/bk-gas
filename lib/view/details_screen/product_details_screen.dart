@@ -1,7 +1,6 @@
 import 'package:bk_gas/controller/cart_controleler.dart';
 import 'package:bk_gas/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
-import 'package:bk_gas/widget/check_out_card.dart';
 import 'package:bk_gas/widget/custom_appber.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
 import 'package:bk_gas/widget/heading_text.dart';
@@ -16,6 +15,7 @@ class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({super.key});
   CartControleler cartControleler = Get.put(CartControleler());
   RxInt productCount = 1.obs;
+  var argumentData = Get.arguments;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,14 +156,25 @@ class ProductDetailsScreen extends StatelessWidget {
                   ),
                   title: "Add To Cart | \$${Get.arguments["price"]}",
                   ontap: () {
-                    cartControleler.checkOutItem.add(CheckOutCard(
-                      imagePath: Get.arguments["imagePath"],
-                      title: Get.arguments["title"],
-                      price: Get.arguments["price"],
-                      weight: Get.arguments["weight"],
-                      productCount: productCount,
-                    ));
-                    debugPrint("cart added");
+                    cartControleler.checkList.add([
+                      argumentData["imagePath"],
+                      argumentData["title"],
+                      argumentData["price"],
+                      argumentData["weight"],
+                      productCount,
+                      "#GAZ-06-001"
+                    ]);
+                    Get.back();
+
+                    // cartControleler.checkOutItem.add(CheckOutCard(
+                    //   imagePath: Get.arguments["imagePath"],
+                    //   title: Get.arguments["title"],
+                    //   price: Get.arguments["price"],
+                    //   weight: Get.arguments["weight"],
+                    //   productCount: productCount,
+                    //   orderId: "#GAZ-06-001",
+                    // ));
+                    // debugPrint("cart added");
                   }),
               SizedBox(
                 height: 10.h,

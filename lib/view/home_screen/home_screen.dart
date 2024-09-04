@@ -121,13 +121,13 @@ class HomeScreen extends StatelessWidget {
                                 "title":"My Dream",
                                 "subtitle":"Their size is particularly beneficial for small-scale operations or mobile services that require gas mobility.",
                                 "weight":"6",
-                                "price" : "212.99",
+                                "price" : "21",
 
                               });
                         },
                         imagePath: AppImage.productImage,
                         title: 'My Dream',
-                        price: '212.99',
+                        price: '21',
                         weight: '6',
                       );
                     }),
