@@ -1,4 +1,4 @@
-
+import 'package:bk_gas/view/account_screen/account_profile_screen.dart';
 import 'package:bk_gas/view/authe_screen/get_otp_screen.dart';
 import 'package:bk_gas/view/authe_screen/login_screen.dart';
 import 'package:bk_gas/view/authe_screen/profile_setup.dart';
@@ -26,19 +26,74 @@ class AppRoute {
   static String productDetailsScreen = "/productDetailsScreen";
   static String readMoreScreen = "/readMoreScreen";
   static String checkoutScreen = "/checkoutScreen";
+
+  static String accountProfileScreen = "/accountProfileScreen";
 }
 
 List<GetPage> getPage = [
-  GetPage(name: AppRoute.initialRout, page: () => const SplashScreen(),transition: Transition.fade,),
-  GetPage(name: AppRoute.onbording, page: () => const OnbordingScreen(),transition: Transition.fade,),
-  GetPage(name: AppRoute.loginScreen, page: () => LoginScreen(),transition: Transition.fade,),
-  GetPage(name: AppRoute.signupScreen, page: () => SignupScreen(),transition: Transition.fade,),
-  GetPage(name: AppRoute.getOtpScreen, page: () =>const OtpCodeScreen(),transition: Transition.fade,),
-  GetPage(name: AppRoute.profileSetup, page: () =>ProfileSetup(),transition: Transition.fade,),
-  GetPage(name: AppRoute.bottomBarScreen, page: () =>BottomBarScreen(),transition: Transition.fade,),
-  GetPage(name: AppRoute.searchScreen, page: () =>SearchBarScreen(),transition: Transition.fade,),
-  GetPage(name: AppRoute.notificationScreen, page: () =>const NotificationScreen(),transition: Transition.fade,),
-  GetPage(name: AppRoute.productDetailsScreen, page: () => ProductDetailsScreen(),transition: Transition.fade,),
-  GetPage(name: AppRoute.readMoreScreen, page: () =>const ReadMore(),transition: Transition.fade,),
-  GetPage(name: AppRoute.checkoutScreen, page: () => CheckoutScreen(),transition: Transition.fade,),
+  GetPage(
+    name: AppRoute.initialRout,
+    page: () => const SplashScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.onbording,
+    page: () => const OnbordingScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.loginScreen,
+    page: () => LoginScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.signupScreen,
+    page: () => SignupScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.getOtpScreen,
+    page: () => const OtpCodeScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.profileSetup,
+    page: () => ProfileSetup(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.bottomBarScreen,
+    page: () => BottomBarScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.searchScreen,
+    page: () => SearchBarScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.notificationScreen,
+    page: () => const NotificationScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.productDetailsScreen,
+    page: () => ProductDetailsScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.readMoreScreen,
+    page: () => const ReadMore(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.checkoutScreen,
+    page: () => CheckoutScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.accountProfileScreen,
+    page: () => AccountProfileScreen(),
+    transition: Transition.fade,
+  ),
 ];
