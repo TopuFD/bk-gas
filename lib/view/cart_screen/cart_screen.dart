@@ -15,6 +15,7 @@ class CartScreen extends StatelessWidget {
   CartScreen({super.key});
   CartControleler cartControleler = Get.put(CartControleler());
   RxInt currentIndex = 0.obs;
+  RxInt itemCount = 0.obs;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +39,27 @@ class CartScreen extends StatelessWidget {
           ? Obx(() {
               return InkWell(
                 onTap: () {
-                  Get.toNamed(AppRoute.checkoutScreen,
-                      arguments: currentIndex.value);
+                  Get.toNamed(AppRoute.checkoutScreen, arguments: {
+                    'currentIndex': currentIndex.value,
+                    "itemCount": itemCount
+                  });
                 },
+                // ================================================cart data here>
                 child: ListView.builder(
                     itemCount: cartControleler.checkList.length,
                     itemBuilder: (context, index) {
                       currentIndex.value = index;
+
                       var data = cartControleler.checkList[index];
-                      return CheckOutCard(imagePath: data[0], title: data[1], price: data[2], weight: data[3], productCount: data[4]);
+                      cartControleler.checkList[currentIndex.value][4] =
+                          data[4];
+                      cartControleler.checkList.refresh;
+                      return CheckOutCard(
+                          imagePath: data[0],
+                          title: data[1],
+                          price: data[2],
+                          weight: data[3],
+                          productCount: data[4]);
                     }),
               );
             })
