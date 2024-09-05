@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:bk_gas/controller/image_controller.dart';
 import 'package:bk_gas/utils/color.dart';
+import 'package:bk_gas/widget/custom_appber.dart';
+import 'package:bk_gas/widget/heading_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,16 +11,20 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class AccountProfileScreen extends StatelessWidget {
   AccountProfileScreen({super.key});
-  ImagePicController imageController = ImagePicController();
 
+  
+  ImagePicController imageController = ImagePicController();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CustomAppbar(title: "Account",),
       body: SizedBox(
         width: Get.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(height: 30.h,),
             Stack(
               clipBehavior: Clip.none,
               children: [
@@ -61,6 +67,7 @@ class AccountProfileScreen extends StatelessWidget {
                         )))
               ],
             ),
+            const HeadingText(headingText: "")
           ],
         ),
       ),
