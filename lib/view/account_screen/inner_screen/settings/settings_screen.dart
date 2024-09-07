@@ -37,21 +37,21 @@ class SettingsScreen extends StatelessWidget {
               title: "About Us",
               iconData: CupertinoIcons.exclamationmark_circle_fill,
               ontap: () {
-                Get.toNamed(AppRoute.changePassScreen);
+                Get.toNamed(AppRoute.aboutScreen);
               },
             ),
             settingItems(
               title: "Terms & Conditions",
               iconData: CupertinoIcons.exclamationmark_triangle_fill,
               ontap: () {
-                Get.toNamed(AppRoute.changePassScreen);
+                Get.toNamed(AppRoute.termConditionScreen);
               },
             ),
             settingItems(
               title: "Privacy Policy",
               iconData: CupertinoIcons.question_circle_fill,
               ontap: () {
-                Get.toNamed(AppRoute.changePassScreen);
+                Get.toNamed(AppRoute.privacyScreen);
               },
             ),
           ],

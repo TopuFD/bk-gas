@@ -1,7 +1,10 @@
 import 'package:bk_gas/view/account_screen/account_profile_screen.dart';
 import 'package:bk_gas/view/account_screen/edit_profile_screen.dart';
+import 'package:bk_gas/view/account_screen/inner_screen/settings/about_screen.dart';
 import 'package:bk_gas/view/account_screen/inner_screen/settings/change_pass_screen.dart';
+import 'package:bk_gas/view/account_screen/inner_screen/settings/privacy_policy_screen.dart';
 import 'package:bk_gas/view/account_screen/inner_screen/settings/settings_screen.dart';
+import 'package:bk_gas/view/account_screen/inner_screen/settings/terms_screen.dart';
 import 'package:bk_gas/view/authe_screen/forget_pass_screen.dart';
 import 'package:bk_gas/view/authe_screen/get_otp_screen.dart';
 import 'package:bk_gas/view/authe_screen/login_screen.dart';
@@ -37,6 +40,9 @@ class AppRoute {
   static String editProfilScreen = "/editProfilScreen";
   static String settingsScreen = "/settingsScreen";
   static String changePassScreen = "/changePassScreen";
+  static String aboutScreen = "/aboutScreen";
+  static String termConditionScreen = "/termConditionScreen";
+  static String privacyScreen = "/privacyScreen";
 }
 
 List<GetPage> getPage = [
@@ -123,6 +129,21 @@ List<GetPage> getPage = [
   GetPage(
     name: AppRoute.changePassScreen,
     page: () => ChangePassScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.aboutScreen,
+    page: () => const AboutScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.termConditionScreen,
+    page: () => const TermsScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.privacyScreen,
+    page: () => const PrivacyPolicyScreen(),
     transition: Transition.fade,
   ),
 ];
