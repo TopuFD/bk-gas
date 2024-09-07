@@ -12,6 +12,7 @@ class CustomTextFormField extends StatelessWidget {
   final Icon? prefixIcon;
   final IconButton? suffixIcon;
   final String? textFieldHeading;
+  final int? maxLine;
 
   const CustomTextFormField({
     super.key,
@@ -23,6 +24,7 @@ class CustomTextFormField extends StatelessWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.textFieldHeading,
+    this.maxLine
   });
 
   @override
@@ -31,8 +33,8 @@ class CustomTextFormField extends StatelessWidget {
       textFieldHeading == null
           ? Container()
           : Align(
-            alignment: Alignment.topLeft,
-            child: Text(
+              alignment: Alignment.topLeft,
+              child: Text(
                 textFieldHeading!,
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -43,15 +45,14 @@ class CustomTextFormField extends StatelessWidget {
                   height: 0,
                 ),
               ),
-          ),
+            ),
       TextFormField(
         controller: controller,
         validator: validator,
         keyboardType: keyboardType,
+        maxLines: obscureText ? 1 : maxLine??1,
         obscureText: obscureText,
-        
         decoration: InputDecoration(
-          
             filled: true,
             fillColor: AppColor.secondaryColor,
             focusedBorder: OutlineInputBorder(
@@ -66,7 +67,10 @@ class CustomTextFormField extends StatelessWidget {
             border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.r),
                 borderSide: const BorderSide(color: AppColor.primaryColor)),
-            contentPadding: EdgeInsets.only(left: Get.height * .02,top: Get.height * .022,bottom: Get.height * .022),
+            contentPadding: EdgeInsets.only(
+                left: Get.height * .02,
+                top: Get.height * .022,
+                bottom: Get.height * .022),
             hintText: hintText,
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,

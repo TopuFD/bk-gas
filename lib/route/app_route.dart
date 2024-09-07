@@ -1,4 +1,5 @@
 import 'package:bk_gas/view/account_screen/account_profile_screen.dart';
+import 'package:bk_gas/view/account_screen/edit_profile_screen.dart';
 import 'package:bk_gas/view/authe_screen/get_otp_screen.dart';
 import 'package:bk_gas/view/authe_screen/login_screen.dart';
 import 'package:bk_gas/view/authe_screen/profile_setup.dart';
@@ -28,6 +29,7 @@ class AppRoute {
   static String checkoutScreen = "/checkoutScreen";
 
   static String accountProfileScreen = "/accountProfileScreen";
+  static String editProfilScreen = "/editProfilScreen";
 }
 
 List<GetPage> getPage = [
@@ -94,6 +96,11 @@ List<GetPage> getPage = [
   GetPage(
     name: AppRoute.accountProfileScreen,
     page: () => AccountProfileScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.editProfilScreen,
+    page: () => EditProfileScreen(),
     transition: Transition.fade,
   ),
 ];

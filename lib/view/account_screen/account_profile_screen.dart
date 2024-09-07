@@ -1,6 +1,7 @@
-import 'dart:io';
 
+import 'dart:io';
 import 'package:bk_gas/controller/image_controller.dart';
+import 'package:bk_gas/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/utils/text_style.dart';
 import 'package:bk_gas/widget/custom_appber.dart';
@@ -14,7 +15,10 @@ class AccountProfileScreen extends StatelessWidget {
   AccountProfileScreen({super.key});
 
   ImagePicController imageController = ImagePicController();
-
+  RxString name = "subrina Carpenter".obs;
+  RxString email = "sabrina@ymail.com".obs;
+  RxString location = "2972 Westheimer Rd. Santa Ana,Illinois 85486".obs;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,68 +35,62 @@ class AccountProfileScreen extends StatelessWidget {
               SizedBox(
                 height: 30.h,
               ),
-              Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  Container(
-                      height: 130,
-                      width: 130,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: AppColor.textlightBlue,
-                        ),
-                        shape: BoxShape.circle,
-                      ),
-                      //=================================profile image here=================>
-                      child: ClipOval(
-                        child: Obx(() {
-                          return imageController.imagePath!.isNotEmpty
-                              ? Image.file(
-                                  File(imageController.imagePath!.value),
-                                  fit: BoxFit.cover,
-                                  height: 130.h,
-                                  width: 130.w,
-                                )
-                              : Icon(
-                                  Icons.person,
-                                  color: AppColor.secondaryColor,
-                                  size: 100.h,
-                                );
-                        }),
-                      )),
-                  Positioned(
-                      bottom: -14,
-                      right: -22,
-                      child: IconButton(
-                          onPressed: () {
-                            showModalSheet(context);
-                          },
-                          icon: Icon(
-                            Icons.image_outlined,
-                            color: AppColor.primaryColor,
-                            size: 42.h,
-                          )))
-                ],
+              // Profile Image with Obx to observe imagePath changes
+              Container(
+                height: 130,
+                width: 130,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: AppColor.textlightBlue,
+                  ),
+                  shape: BoxShape.circle,
+                ),
+                child: ClipOval(
+                  child: Obx(() {
+                    return imageController.imagePath!.isNotEmpty
+                        ? Image.file(
+                            File(imageController.imagePath!.value),
+                            fit: BoxFit.cover,
+                            height: 130.h,
+                            width: 130.w,
+                          )
+                        : Icon(
+                            Icons.person,
+                            color: AppColor.secondaryColor,
+                            size: 100.h,
+                          );
+                  }),
+                ),
               ),
               SizedBox(
                 height: 10.h,
               ),
+              // Name displayed without Obx (since it's already updated elsewhere)
               Text(
                 "Subrina Carpernter",
                 style: CustomTextStyle.h2(),
               ),
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(AppRoute.editProfilScreen, arguments: {
+                      "name": name,
+                      "email": email,
+                      "location": location,
+                    });
+                  },
                   child: Text(
                     "Edit Account",
                     style: CustomTextStyle.h1(fontSize: 16),
                   )),
-              userCard(iconData: Icons.person, title: "Sabrina Carpenter"),
-              userCard(iconData: Icons.email, title: "sabrina@ymail.com"),
-              userCard(
+              // User cards are wrapped in Obx only at the parent level
+              Obx(() => userCard(
+                  iconData: Icons.person, title: name.value)),
+              Obx(() => userCard(
+                  iconData: Icons.email, title: email.value)),
+              Obx(() => userCard(
                   heights: 100.h,
                   iconData: CupertinoIcons.location_solid,
-                  title: "2972 Westheimer Rd. Santa Ana,Illinois 85486"),
+                  title: location.value)),
             ],
           ),
         ),
@@ -100,7 +98,7 @@ class AccountProfileScreen extends StatelessWidget {
     );
   }
 
-  //===========================userDataCard=====================
+  // User Data Card (No Obx needed here)
   userCard({String? title, double? heights, IconData? iconData}) {
     return Container(
       height: heights ?? 60.h,
@@ -125,61 +123,61 @@ class AccountProfileScreen extends StatelessWidget {
     );
   }
 
-  // here is modal bottomsheet bellow=======================>
+  // Modal Bottom Sheet for Image Picker
   void showModalSheet(BuildContext context) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20.r),
-                topRight: Radius.circular(20.r))),
-        context: context,
-        builder: (context) {
-          return Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.h),
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                Text(
-                  "Pick Your Image",
-                  style: TextStyle(
-                      fontSize: 20.sp,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                        onPressed: () async {
-                          imageController.pickImageCemara();
-                          Get.back();
-                        },
-                        icon: Icon(
-                          Icons.camera,
-                          color: Colors.blue,
-                          semanticLabel: "Camera",
-                          size: 100.sp,
-                        )),
-                    IconButton(
-                        onPressed: () async {
-                          imageController.pickImageGellary();
-                          Get.back();
-                        },
-                        icon: Icon(
-                          Icons.image,
-                          color: Colors.blue,
-                          semanticLabel: "Grllary",
-                          size: 100.sp,
-                        ))
-                  ],
-                )
-              ],
-            ),
-          );
-        });
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20.r),
+              topRight: Radius.circular(20.r))),
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.h),
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Text(
+                "Pick Your Image",
+                style: TextStyle(
+                    fontSize: 20.sp,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                      onPressed: () async {
+                        imageController.pickImageCemara();
+                        Get.back();
+                      },
+                      icon: Icon(
+                        Icons.camera,
+                        color: Colors.blue,
+                        size: 100.sp,
+                      )),
+                  IconButton(
+                      onPressed: () async {
+                        imageController.pickImageGellary();
+                        Get.back();
+                      },
+                      icon: Icon(
+                        Icons.image,
+                        color: Colors.blue,
+                        size: 100.sp,
+                      ))
+                ],
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 }
+
