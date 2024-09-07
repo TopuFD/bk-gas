@@ -1,5 +1,6 @@
 import 'package:bk_gas/view/account_screen/account_profile_screen.dart';
 import 'package:bk_gas/view/account_screen/edit_profile_screen.dart';
+import 'package:bk_gas/view/account_screen/inner_screen/settings/change_pass_screen.dart';
 import 'package:bk_gas/view/account_screen/inner_screen/settings/settings_screen.dart';
 import 'package:bk_gas/view/authe_screen/forget_pass_screen.dart';
 import 'package:bk_gas/view/authe_screen/get_otp_screen.dart';
@@ -35,6 +36,7 @@ class AppRoute {
   static String accountProfileScreen = "/accountProfileScreen";
   static String editProfilScreen = "/editProfilScreen";
   static String settingsScreen = "/settingsScreen";
+  static String changePassScreen = "/changePassScreen";
 }
 
 List<GetPage> getPage = [
@@ -115,7 +117,12 @@ List<GetPage> getPage = [
   ),
   GetPage(
     name: AppRoute.settingsScreen,
-    page: () => SettingsScreen(),
+    page: () => const SettingsScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.changePassScreen,
+    page: () => ChangePassScreen(),
     transition: Transition.fade,
   ),
 ];
