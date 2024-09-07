@@ -1,6 +1,7 @@
 import 'package:bk_gas/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/utils/image.dart';
+import 'package:bk_gas/utils/text_style.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
 import 'package:bk_gas/widget/custom_textfield.dart';
 import 'package:bk_gas/widget/doc_text.dart';
@@ -73,7 +74,18 @@ class LoginScreen extends StatelessWidget {
                       obscureText: true,
                       keyboardType: TextInputType.number,
                     ),
+                    Align(
+                        alignment: Alignment.topRight,
+                        child: TextButton(
+                            onPressed: () {
+                              Get.toNamed(AppRoute.forgetPassScreen);
+                            },
+                            child: Text(
+                              "Forget password",
+                              style: CustomTextStyle.h1(fontSize: 17),
+                            ))),
                     const Expanded(child: SizedBox()),
+                    //============================================login button start here
                     CustomBodyBtn(
                         title: "LogIn",
                         ontap: () {

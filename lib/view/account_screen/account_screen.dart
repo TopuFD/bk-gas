@@ -34,7 +34,9 @@ class AccountScreen extends StatelessWidget {
             accountBodyItem(
                 "Monthly consumption", Icons.calendar_month_outlined, () {}),
             accountBodyItem("Loyalty", Icons.card_giftcard, () {}),
-            accountBodyItem("Settings", Icons.settings, () {}),
+            accountBodyItem("Settings", Icons.settings, () {
+              Get.toNamed(AppRoute.settingsScreen);
+            }),
             accountBodyItem("Logout", Icons.logout, () {
               customDialogBox();
             }),
@@ -72,7 +74,7 @@ class AccountScreen extends StatelessWidget {
   //=============================================custom appbar for that screen
   Widget myAppbar(String title) {
     return Padding(
-      padding:  EdgeInsets.only(left: 20.w,top: 40.h),
+      padding: EdgeInsets.only(left: 20.w, top: 40.h),
       child: Container(
         color: AppColor.textwhite,
         child: Row(
@@ -90,20 +92,20 @@ class AccountScreen extends StatelessWidget {
                   child: Obx(() {
                     return imageController.imagePath!.isNotEmpty
                         ? Center(
-                          child: Image.file(
+                            child: Image.file(
                               File(imageController.imagePath!.value),
                               fit: BoxFit.cover,
                               height: 50.h,
                               width: 50.w,
                             ),
-                        )
+                          )
                         : Center(
-                          child: Icon(
+                            child: Icon(
                               Icons.person,
                               color: AppColor.secondaryColor,
                               size: 40.h,
                             ),
-                        );
+                          );
                   }),
                 )),
             SizedBox(

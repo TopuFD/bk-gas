@@ -24,6 +24,16 @@ class CustomTextStyle {
       fontWeight: fontWeight ?? FontWeight.bold,
     );
   }
+  //==============================================heading two
+  static TextStyle h3({Color? color,FontWeight? fontWeight,double? fontSize,double? letterSpacing,
+  }) {
+    return TextStyle(
+      color: color ?? AppColor.textgrey,
+      fontSize: fontSize ?? 16.sp,
+      letterSpacing: letterSpacing,
+      fontWeight: fontWeight ?? FontWeight.bold,
+    );
+  }
 
 
 }

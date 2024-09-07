@@ -1,5 +1,7 @@
 import 'package:bk_gas/view/account_screen/account_profile_screen.dart';
 import 'package:bk_gas/view/account_screen/edit_profile_screen.dart';
+import 'package:bk_gas/view/account_screen/inner_screen/settings/settings_screen.dart';
+import 'package:bk_gas/view/authe_screen/forget_pass_screen.dart';
 import 'package:bk_gas/view/authe_screen/get_otp_screen.dart';
 import 'package:bk_gas/view/authe_screen/login_screen.dart';
 import 'package:bk_gas/view/authe_screen/profile_setup.dart';
@@ -18,6 +20,8 @@ class AppRoute {
   static String initialRout = "/initialRout";
   static String onbording = "/onbording";
   static String loginScreen = "/loginScreen";
+  static String forgetPassScreen = "/forgetPassScreen";
+
   static String signupScreen = "/signUpScreen";
   static String getOtpScreen = "/getOtpScreen";
   static String profileSetup = "/profileSetup";
@@ -30,6 +34,7 @@ class AppRoute {
 
   static String accountProfileScreen = "/accountProfileScreen";
   static String editProfilScreen = "/editProfilScreen";
+  static String settingsScreen = "/settingsScreen";
 }
 
 List<GetPage> getPage = [
@@ -46,6 +51,11 @@ List<GetPage> getPage = [
   GetPage(
     name: AppRoute.loginScreen,
     page: () => LoginScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.forgetPassScreen,
+    page: () => ForgetPassScreen(),
     transition: Transition.fade,
   ),
   GetPage(
@@ -101,6 +111,11 @@ List<GetPage> getPage = [
   GetPage(
     name: AppRoute.editProfilScreen,
     page: () => EditProfileScreen(),
+    transition: Transition.fade,
+  ),
+  GetPage(
+    name: AppRoute.settingsScreen,
+    page: () => SettingsScreen(),
     transition: Transition.fade,
   ),
 ];
