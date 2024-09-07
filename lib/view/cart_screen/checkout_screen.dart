@@ -210,7 +210,8 @@ class CheckoutScreen extends StatelessWidget {
         title: "dialog",
         content: Column(
           children: [
-            Image.asset(AppImage.dialogImage),
+            SizedBox(height: 200.h,width: 200.w,child: Image.asset(AppImage.dialogImage,height: 200.h,)),
+            
             Text(
               'Congratulations!',
               textAlign: TextAlign.center,
@@ -241,7 +242,7 @@ class CheckoutScreen extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  SvgPicture.asset(AppImage.dialogImage),
+                  SvgPicture.asset(AppImage.koinImage),
                   Text(
                     '+10.5 loyalty point received',
                     style: TextStyle(
