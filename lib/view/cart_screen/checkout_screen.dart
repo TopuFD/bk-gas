@@ -18,6 +18,7 @@ class CheckoutScreen extends StatelessWidget {
   CartControleler cartControleler = Get.put(CartControleler());
   TextEditingController cuponCode = TextEditingController();
   TextEditingController visaCode = TextEditingController();
+  RxInt productCount = 1.obs;
   int currentIndex = Get.arguments["currentIndex"];
   RxInt itemCount = Get.arguments["itemCount"];
 
@@ -194,6 +195,15 @@ class CheckoutScreen extends StatelessWidget {
                 CustomBodyBtn(
                     title: "Pay",
                     ontap: () {
+                      cartControleler.orderList.add([
+                        
+                        cartControleler.checkList[currentIndex][0],
+                        cartControleler.checkList[currentIndex][2],
+                        cartControleler.checkList[currentIndex][4],
+                        cartControleler.checkList[currentIndex][5],
+                      ]
+
+                      );
                       customDialog();
                     })
               ],
@@ -210,8 +220,13 @@ class CheckoutScreen extends StatelessWidget {
         title: "dialog",
         content: Column(
           children: [
-            SizedBox(height: 200.h,width: 200.w,child: Image.asset(AppImage.dialogImage,height: 200.h,)),
-            
+            SizedBox(
+                height: 200.h,
+                width: 200.w,
+                child: Image.asset(
+                  AppImage.dialogImage,
+                  height: 200.h,
+                )),
             Text(
               'Congratulations!',
               textAlign: TextAlign.center,

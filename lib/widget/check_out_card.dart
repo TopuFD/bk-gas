@@ -10,16 +10,16 @@ class CheckOutCard extends StatelessWidget {
   CheckOutCard({
     super.key,
     required this.imagePath,
-    required this.title,
+    this.title,
     required this.price,
-    required this.weight,
+    this.weight,
     this.orderId,
     required this.productCount,
   });
   String imagePath;
-  String title;
+  String? title;
   String price;
-  String weight;
+  String? weight;
   RxInt productCount;
   String? orderId;
   @override
@@ -45,8 +45,17 @@ class CheckOutCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text(
-                      title,
+                    title != null?Text(
+                      title!,
+                      style: TextStyle(
+                        color: const Color(0xFF333333),
+                        fontSize: 14.sp,
+                        fontFamily: 'Encode Sans',
+                        fontWeight: FontWeight.w600,
+                        height: 0,
+                      ),
+                    ):Text(
+                      orderId!,
                       style: TextStyle(
                         color: const Color(0xFF333333),
                         fontSize: 14.sp,

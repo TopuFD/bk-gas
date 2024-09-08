@@ -16,7 +16,7 @@ class BottomBarScreen extends StatelessWidget {
   final List<Widget> pages = [
     HomeScreen(),
     CartScreen(),
-    const OrderScreen(),
+     OrderScreen(),
     AccountScreen()
   ];
 
