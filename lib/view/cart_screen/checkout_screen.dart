@@ -1,6 +1,7 @@
 import 'package:bk_gas/controller/cart_controleler.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/utils/image.dart';
+import 'package:bk_gas/utils/text_style.dart';
 import 'package:bk_gas/widget/check_out_card.dart';
 import 'package:bk_gas/widget/custom_appber.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
@@ -238,39 +239,34 @@ class CheckoutScreen extends StatelessWidget {
                 height: 0,
               ),
             ),
+            SizedBox(height: 10.h,),
             Text(
               'Payment successfully. ',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: AppColor.textgrey,
-                fontSize: 16.sp,
-                fontFamily: 'Open Sans',
-                fontWeight: FontWeight.w400,
-                height: 0,
-              ),
+              style: CustomTextStyle.h3(fontSize: 16.sp)
             ),
+            SizedBox(height: 10.h,),
             Container(
-              width: 270.w,
-              height: 53.h,
+              width: 225.w,
+              height: 50.h,
               decoration: BoxDecoration(
                 border: Border.all(color: AppColor.textblack),
+                borderRadius: BorderRadius.circular(10.r)
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SvgPicture.asset(AppImage.koinImage),
                   Text(
                     '+10.5 loyalty point received',
-                    style: TextStyle(
-                      color: AppColor.textgrey,
-                      fontSize: 14.sp,
-                      fontFamily: 'Poppins',
-                      fontWeight: FontWeight.w400,
-                      height: 0,
-                    ),
+                    style: CustomTextStyle.h3(fontSize: 12.sp)
                   )
                 ],
               ),
-            )
+            ),
+            SizedBox(height: 30.h,),
+            CustomBodyBtn(title: "Go to Home", ontap: (){})
           ],
         ));
   }
