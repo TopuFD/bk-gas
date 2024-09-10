@@ -1,4 +1,4 @@
-import 'package:bk_gas/route/app_route.dart';
+import 'package:bk_gas/controller/authe_controller.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/widget/custom_appber.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class SignupScreen extends StatelessWidget {
   SignupScreen({super.key});
-  TextEditingController nameController = TextEditingController();
+  AutheController autheController = Get.find<AutheController>();
   RxBool isCheck = false.obs;
   @override
   Widget build(BuildContext context) {
@@ -33,43 +33,27 @@ class SignupScreen extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
+                  
+                  //===================================================email textformfield
                   CustomTextFormField(
-                    hintText: "Name",
-                    controller: nameController,
+                    hintText: "write your email",
+                    controller: autheController.emailController.value,
                     prefixIcon: const Icon(Icons.person),
-                    textFieldHeading: "Name",
+                    textFieldHeading: "Email",
                   ),
                   SizedBox(
                     height: 10.h,
                   ),
-                  CustomTextFormField(
-                    hintText: "Last Name",
-                    controller: nameController,
-                    prefixIcon: const Icon(Icons.person),
-                    textFieldHeading: "Last Name",
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
+                  //===================================================password textformfield
                   CustomTextFormField(
                     hintText: "Password",
-                    controller: nameController,
+                    controller: autheController.passwordController.value,
                     prefixIcon: const Icon(Icons.person),
                     textFieldHeading: "Password",
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 20.h,
                   ),
-                  CustomTextFormField(
-                    hintText: "Confirm Password",
-                    controller: nameController,
-                    prefixIcon: const Icon(Icons.person),
-                    textFieldHeading: "Confirm Password",
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  SizedBox(height: 20.h,),
                   SizedBox(
                     width: Get.width,
                     child: Row(
@@ -141,11 +125,14 @@ class SignupScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(height: 40.h,),
+                  SizedBox(
+                    height: 40.h,
+                  ),
+                  //=====================================================sign up button here
                   CustomBodyBtn(
                       title: "Sign Up",
                       ontap: () {
-                        Get.toNamed(AppRoute.getOtpScreen);
+                        autheController.signUp();
                       }),
                 ],
               ),

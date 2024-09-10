@@ -1,5 +1,5 @@
 import 'package:bk_gas/controller/cart_controleler.dart';
-import 'package:bk_gas/route/app_route.dart';
+import 'package:bk_gas/core/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/utils/image.dart';
 import 'package:bk_gas/widget/check_out_card.dart';

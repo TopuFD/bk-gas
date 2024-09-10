@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bk_gas/route/app_route.dart';
+import 'package:bk_gas/core/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/utils/image.dart';
 import 'package:bk_gas/widget/gradient_container.dart';

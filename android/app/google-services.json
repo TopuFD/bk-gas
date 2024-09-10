@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "743374768807",
+    "project_id": "bk-gas",
+    "storage_bucket": "bk-gas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743374768807:android:983067a4813a4c8d41a982",
+        "android_client_info": {
+          "package_name": "com.example.bk_gas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR3M2NmuCI2mn1V3B-ToWKlvyxP1_un7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

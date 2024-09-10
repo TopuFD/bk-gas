@@ -1,4 +1,4 @@
-import 'package:bk_gas/route/app_route.dart';
+import 'package:bk_gas/controller/authe_controller.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/widget/custom_appber.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
@@ -10,13 +10,16 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpCodeScreen extends StatefulWidget {
-  const OtpCodeScreen({super.key});
-
+  const OtpCodeScreen({
+    super.key,
+  });
   @override
   State<OtpCodeScreen> createState() => _OtpCodeScreenState();
 }
 
 class _OtpCodeScreenState extends State<OtpCodeScreen> {
+  AutheController autheController = Get.find<AutheController>();
+  TextEditingController enteredOtp = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -38,7 +41,9 @@ class _OtpCodeScreenState extends State<OtpCodeScreen> {
                   SizedBox(
                     height: Get.height * .03,
                   ),
+                  //======================================= otp pin code field here
                   PinCodeTextField(
+                    controller: enteredOtp,
                     appContext: context,
                     length: 6,
                     obscureText: false,
@@ -71,6 +76,7 @@ class _OtpCodeScreenState extends State<OtpCodeScreen> {
                           height: 0,
                         ),
                       ),
+                      //====================================resend otp code button here
                       TextButton(
                           onPressed: () {},
                           child: Text(
@@ -87,10 +93,11 @@ class _OtpCodeScreenState extends State<OtpCodeScreen> {
                     ],
                   ),
                   const Expanded(child: SizedBox()),
+                  //=========================================================confirm button here
                   CustomBodyBtn(
                       title: "Confirm",
                       ontap: () {
-                        Get.toNamed(AppRoute.profileSetup);
+                        autheController.verifyOtp(enteredOtp.text);
                       }),
                   SizedBox(
                     height: Get.height * .04,

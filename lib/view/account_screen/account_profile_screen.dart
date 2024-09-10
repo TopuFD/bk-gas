@@ -1,7 +1,7 @@
 
 import 'dart:io';
 import 'package:bk_gas/controller/image_controller.dart';
-import 'package:bk_gas/route/app_route.dart';
+import 'package:bk_gas/core/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/utils/text_style.dart';
 import 'package:bk_gas/widget/custom_appber.dart';

@@ -1,10 +1,16 @@
-import 'package:bk_gas/route/app_route.dart';
+import 'package:bk_gas/core/dependency.dart';
+import 'package:bk_gas/core/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  DependancyInjection di = DependancyInjection();
+  di.dependencies();
   runApp(const MyApp());
 }
 
@@ -22,8 +28,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
-        scaffoldBackgroundColor: AppColor.textwhite,
-      ),
+            scaffoldBackgroundColor: AppColor.textwhite,
+          ),
           getPages: getPage,
           initialRoute: AppRoute.initialRout,
         );
