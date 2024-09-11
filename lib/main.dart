@@ -1,6 +1,7 @@
 import 'package:bk_gas/core/dependency.dart';
 import 'package:bk_gas/core/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,9 +32,17 @@ class MyApp extends StatelessWidget {
             scaffoldBackgroundColor: AppColor.textwhite,
           ),
           getPages: getPage,
-          initialRoute: AppRoute.initialRout,
+          initialRoute: _getInitialRoute(),
         );
       },
     );
+  }
+  //============================================= login user checking method here
+    String _getInitialRoute() {
+    if (FirebaseAuth.instance.currentUser != null) {
+      return AppRoute.bottomBarScreen;
+    } else {
+      return AppRoute.initialRout;
+    }
   }
 }
