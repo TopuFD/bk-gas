@@ -1,4 +1,4 @@
-import 'package:bk_gas/controller/authe_controller.dart';
+import 'package:bk_gas/controller/auth_controller.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/widget/custom_appber.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
@@ -33,7 +33,7 @@ class SignupScreen extends StatelessWidget {
                   SizedBox(
                     height: 10.h,
                   ),
-                  
+
                   //===================================================email textformfield
                   CustomTextFormField(
                     hintText: "write your email",

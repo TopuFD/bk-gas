@@ -15,8 +15,31 @@ class AutheController extends GetxController {
   //=======================================firebaseauth instance here=======================
   final firebaseAuth = FirebaseAuth.instance;
 
+  //=======================================login method here===========================>
+  Future logIn() async {
+    try {
+      await firebaseAuth
+          .signInWithEmailAndPassword(
+              email: emailController.value.text,
+              password: passwordController.value.text)
+          .then((value) {
+        Get.snackbar("LogIn", "Successfully Login");
+        Get.offAllNamed(AppRoute.bottomBarScreen);
+
+        emailController.value.clear();
+        passwordController.value.clear();
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Get.snackbar("LogIn", "No user found for that email");
+      } else if (e.code == 'wrong-password') {
+        Get.snackbar("Password", "Wrong password provided for that user");
+      }
+    }
+  }
+
   //=======================================sign up method here==========================>
-  signUp() async {
+  Future signUp() async {
     try {
       if (emailController.value.text.isNotEmpty &&
           passwordController.value.text.isNotEmpty) {
@@ -24,6 +47,9 @@ class AutheController extends GetxController {
         var otp = EmailOTP.getOTP();
         sendOtp = otp;
         Get.toNamed(AppRoute.getOtpScreen);
+
+        emailController.value.clear();
+        passwordController.value.clear();
         Get.snackbar("OTP", "Send OTP in your Email");
       }
     } on FirebaseAuthException catch (e) {
@@ -38,7 +64,7 @@ class AutheController extends GetxController {
   }
 
   // =================================================verify OTP code and create user
-  verifyOtp(String userInputOtp) async {
+  Future verifyOtp(String userInputOtp) async {
     try {
       if (sendOtp != null && sendOtp == userInputOtp) {
         await firebaseAuth.createUserWithEmailAndPassword(
@@ -53,5 +79,10 @@ class AutheController extends GetxController {
     } catch (e) {
       Get.snackbar("Error", "Error creating user");
     }
+  }
+
+  //============================================================ LogOut mehtod here
+  Future logOut() async {
+    await firebaseAuth.signOut();
   }
 }

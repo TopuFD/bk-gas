@@ -1,4 +1,5 @@
-import 'package:bk_gas/controller/authe_controller.dart';
+
+import 'package:bk_gas/controller/auth_controller.dart';
 import 'package:get/get.dart';
 
 class DependancyInjection extends Bindings {

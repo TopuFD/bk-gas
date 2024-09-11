@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bk_gas/controller/auth_controller.dart';
 import 'package:bk_gas/controller/image_controller.dart';
 import 'package:bk_gas/core/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
@@ -11,6 +12,7 @@ import 'package:get/get.dart';
 class AccountScreen extends StatelessWidget {
   AccountScreen({super.key});
 
+  AutheController autheController = Get.find<AutheController>();
   ImagePicController imageController = ImagePicController();
   @override
   Widget build(BuildContext context) {
@@ -191,7 +193,9 @@ class AccountScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.offAllNamed(AppRoute.loginScreen);
+                    autheController.logOut().then((value) {
+                      Get.offAllNamed(AppRoute.loginScreen);
+                    });
                   },
                   child: Container(
                     width: 100.w,

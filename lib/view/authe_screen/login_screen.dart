@@ -1,6 +1,8 @@
+import 'package:bk_gas/controller/auth_controller.dart';
 import 'package:bk_gas/core/route/app_route.dart';
 import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/utils/image.dart';
+import 'package:bk_gas/utils/string.dart';
 import 'package:bk_gas/utils/text_style.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
 import 'package:bk_gas/widget/custom_textfield.dart';
@@ -10,15 +12,13 @@ import 'package:bk_gas/widget/heading_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
+  AutheController autheController = Get.find<AutheController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,18 +54,30 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       height: 20.h,
                     ),
+                    // =======================================email textfield here
                     CustomTextFormField(
                       hintText: "Write your Email",
-                      controller: emailController,
+                      controller: autheController.emailController.value,
                       textFieldHeading: "Email",
                       prefixIcon: const Icon(Icons.email),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return AppStaticStrings.enterValidEmail;
+                        } else if (!AppStaticStrings.emailRegexp.hasMatch(
+                            autheController.emailController.value.text)) {
+                          return AppStaticStrings.enterValidEmail;
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
                     SizedBox(
                       height: 10.h,
                     ),
+                    //=========================================password textfield
                     CustomTextFormField(
                       hintText: "Write your password",
-                      controller: passController,
+                      controller: autheController.passwordController.value,
                       textFieldHeading: "Email",
                       prefixIcon: const Icon(Icons.key),
                       suffixIcon: IconButton(
@@ -73,7 +85,18 @@ class LoginScreen extends StatelessWidget {
                           icon: const Icon(Icons.visibility_off)),
                       obscureText: true,
                       keyboardType: TextInputType.number,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return AppStaticStrings.passWordMustBeAtLeast;
+                        } else if (value.length < 8 ||
+                            !AppStaticStrings.passRegexp.hasMatch(value)) {
+                          return AppStaticStrings.passwordLengthAndContain;
+                        } else {
+                          return null;
+                        }
+                      },
                     ),
+                    // ============================================ forget password button
                     Align(
                         alignment: Alignment.topRight,
                         child: TextButton(
@@ -89,7 +112,7 @@ class LoginScreen extends StatelessWidget {
                     CustomBodyBtn(
                         title: "LogIn",
                         ontap: () {
-                          Get.toNamed(AppRoute.bottomBarScreen);
+                          autheController.logIn();
                         }),
                     const Expanded(child: SizedBox()),
                     RichText(
