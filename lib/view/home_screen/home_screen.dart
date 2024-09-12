@@ -4,6 +4,7 @@ import 'package:bk_gas/utils/image.dart';
 import 'package:bk_gas/widget/custom_card.dart';
 import 'package:bk_gas/widget/custom_catagory.dart';
 import 'package:bk_gas/widget/custom_textfield.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,14 +12,14 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
-    List catagory = [
+  HomeScreen({super.key});
+  List catagory = [
     "All Item",
     "6 kg",
     "12 kg",
     "36 kg",
   ];
-
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   TextEditingController searchController = TextEditingController();
 
   RxInt currentIndex = 0.obs;
@@ -80,58 +81,76 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 30.h,),
+              SizedBox(
+                height: 30.h,
+              ),
               //catagory start here===============================================>
               SizedBox(
-                  height: 40.h,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: catagory.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding:  EdgeInsets.only(right: 10.w),
-                          child: CustomCatagory(
-                            title: catagory[index],
-                            index: index,
-                           currentIndex: currentIndex,
-                          ),
-                        );
-                      }),
-                ),
+                height: 40.h,
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: catagory.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(right: 10.w),
+                        child: CustomCatagory(
+                          title: catagory[index],
+                          index: index,
+                          currentIndex: currentIndex,
+                        ),
+                      );
+                    }),
+              ),
               // product list here=========================================>
               SizedBox(
                 height: 20.h,
               ),
-
-              Expanded(
-                child: GridView.builder(
-                    itemCount: 10,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            crossAxisCount: 2,
-                            childAspectRatio: 0.62),
-                    itemBuilder: (context, index) {
-                      return CustomCard(
-                        ontap: () {
-                          Get.toNamed(AppRoute.productDetailsScreen,
-                              arguments: {
-                                "imagePath":AppImage.productImage,
-                                "title":"My Dream",
-                                "subtitle":"Their size is particularly beneficial for small-scale operations or mobile services that require gas mobility.",
-                                "weight":"6",
-                                "price" : "21",
-
-                              });
-                        },
-                        imagePath: AppImage.productImage,
-                        title: 'My Dream',
-                        price: '21',
-                        weight: '6',
-                      );
-                    }),
+              StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection("Product")
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    Get.snackbar("Error", "Snapshot Error ");
+                    return Text("Error: ${snapshot.error}");
+                  } else if (snapshot.hasData) {
+                    final data = snapshot.data!.docs;
+                    return Expanded(
+                      child: GridView.builder(
+                          itemCount: data.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisSpacing: 10,
+                                  mainAxisSpacing: 10,
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 0.62),
+                          itemBuilder: (context, index) {
+                            return CustomCard(
+                              ontap: () {
+                                Get.toNamed(AppRoute.productDetailsScreen,
+                                    arguments: {
+                                      "imagePath": data[index]["image"],
+                                      "title": data[index]["title"],
+                                      "subtitle":data[index]["subtitle"],
+                                      "weight": data[index]["weight"],
+                                      "price": data[index]["price"],
+                                    });
+                              },
+                              imagePath:data[index]["image"],
+                              title: data[index]["title"],
+                              price: data[index]["price"].toString(),
+                              weight: data[index]["weight"].toString(),
+                            );
+                          }),
+                    );
+                  } else {
+                    return const Text("No data found");
+                  }
+                },
               ),
+
               SizedBox(
                 height: 10.h,
               ),

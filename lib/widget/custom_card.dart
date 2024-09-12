@@ -2,6 +2,7 @@ import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/utils/image.dart';
 import 'package:bk_gas/widget/doc_text.dart';
 import 'package:bk_gas/widget/heading_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,7 +15,8 @@ class CustomCard extends StatelessWidget {
       required this.imagePath,
       required this.title,
       required this.price,
-      required this.weight,this.ontap});
+      required this.weight,
+      this.ontap});
   String imagePath;
   String title;
   String weight;
@@ -37,12 +39,24 @@ class CustomCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                  height: 125.h,
-                  width: 124.w,
-                  decoration: BoxDecoration(
-                      border: Border.all(color: AppColor.primaryColor),
-                      borderRadius: BorderRadius.circular(15.r)),
-                  child: Image.asset(imagePath)),
+                height: 125.h,
+                width: 124.w,
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  
+                    border: Border.all(color: AppColor.primaryColor),
+                    borderRadius: BorderRadius.circular(15.r)),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16.r),
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    
+                    imageUrl: imagePath,
+                    placeholder: (context, url) => const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>const Icon(Icons.error),
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 5.h,
               ),

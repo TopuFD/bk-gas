@@ -4,6 +4,7 @@ import 'package:bk_gas/utils/color.dart';
 import 'package:bk_gas/widget/custom_appber.dart';
 import 'package:bk_gas/widget/custom_body_btn.dart';
 import 'package:bk_gas/widget/heading_text.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,14 @@ class ProductDetailsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Get.arguments["imagePath"] != null
-                  ? Image.asset(Get.arguments["imagePath"])
+                  ? CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      imageUrl: Get.arguments["imagePath"],
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    )
                   : const CircularProgressIndicator(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
