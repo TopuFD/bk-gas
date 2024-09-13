@@ -59,8 +59,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+//==================================================================================here is search bar
 
-  // Extracted Methods to keep build clean
   Widget buildSearchBar() {
     return SizedBox(
       width: Get.width,
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
+  //======================================================================here is catagory list
   Widget buildCategoryList() {
     return SizedBox(
       height: 40.h,
@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
+  //====================================================================== here is product list
   Widget buildProductList() {
     return StreamBuilder(
       stream: FirebaseFirestore.instance.collection("Product").snapshots(),
@@ -163,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
         } else if (snapshot.hasData) {
           final data = snapshot.data!.docs;
 
-          // Filter data based on isWeight value
+          //==============================================to filter data
           final filteredData = data.where((product) {
             if (isWeight == 0) {
               return true;
@@ -198,6 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: product["title"],
                   price: product["price"].toString(),
                   weight: product["weight"].toString(),
+                  rating: product["rating"].toString(),
                 );
               },
             ),
@@ -210,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-//custom home appbar
+//====================================================================custom home appbar
 customAppbar() {
   return Padding(
     padding: EdgeInsets.symmetric(horizontal: 15.w),
@@ -316,70 +317,3 @@ customAppbar() {
     ),
   );
 }
-
-
-
-              // StreamBuilder(
-              //   stream: FirebaseFirestore.instance
-              //       .collection("Product")
-              //       .snapshots(),
-              //   builder: (context, snapshot) {
-              //     if (snapshot.connectionState == ConnectionState.waiting) {
-              //       return const CircularProgressIndicator();
-              //     } else if (snapshot.hasError) {
-              //       Get.snackbar("Error", "Snapshot Error ");
-              //       return Text("Error: ${snapshot.error}");
-              //     } else if (snapshot.hasData) {
-              //       final data = snapshot.data!.docs;
-              //       return Expanded(
-              //         child: GridView.builder(
-              //             itemCount: data.length,
-              //             gridDelegate:
-              //                 const SliverGridDelegateWithFixedCrossAxisCount(
-              //                     crossAxisSpacing: 10,
-              //                     mainAxisSpacing: 10,
-              //                     crossAxisCount: 2,
-              //                     childAspectRatio: 0.62),
-              //             itemBuilder: (context, index) {
-              //               if (isWeight == data[index]["weight"]) {
-              //                 return CustomCard(
-              //                   ontap: () {
-              //                     Get.toNamed(AppRoute.productDetailsScreen,
-              //                         arguments: {
-              //                           "imagePath": data[index]["image"],
-              //                           "title": data[index]["title"],
-              //                           "subtitle": data[index]["subtitle"],
-              //                           "weight": data[index]["weight"],
-              //                           "price": data[index]["price"],
-              //                         });
-              //                   },
-              //                   imagePath: data[index]["image"],
-              //                   title: data[index]["title"],
-              //                   price: data[index]["price"].toString(),
-              //                   weight: data[index]["weight"].toString(),
-              //                 );
-              //               } else {
-              //                 return CustomCard(
-              //                   ontap: () {
-              //                     Get.toNamed(AppRoute.productDetailsScreen,
-              //                         arguments: {
-              //                           "imagePath": data[index]["image"],
-              //                           "title": data[index]["title"],
-              //                           "subtitle": data[index]["subtitle"],
-              //                           "weight": data[index]["weight"],
-              //                           "price": data[index]["price"],
-              //                         });
-              //                   },
-              //                   imagePath: data[index]["image"],
-              //                   title: data[index]["title"],
-              //                   price: data[index]["price"].toString(),
-              //                   weight: data[index]["weight"].toString(),
-              //                 );
-              //               }
-              //             }),
-              //       );
-              //     } else {
-              //       return const Text("No data found");
-              //     }
-              //   },
-              // ),

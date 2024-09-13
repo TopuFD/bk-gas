@@ -16,11 +16,13 @@ class CustomCard extends StatelessWidget {
       required this.title,
       required this.price,
       required this.weight,
+      required this.rating,
       this.ontap});
   String imagePath;
   String title;
   String weight;
   String price;
+  String rating;
   VoidCallback? ontap;
 
   @override
@@ -43,17 +45,22 @@ class CustomCard extends StatelessWidget {
                 width: 124.w,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
-                  
                     border: Border.all(color: AppColor.primaryColor),
                     borderRadius: BorderRadius.circular(15.r)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16.r),
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    
                     imageUrl: imagePath,
-                    placeholder: (context, url) => SizedBox(height: 30.h,width: 30.w,child: const Center(child:  CircularProgressIndicator(color: AppColor.primaryColor,))),
-                    errorWidget: (context, url, error) =>const Icon(Icons.error),
+                    placeholder: (context, url) => SizedBox(
+                        height: 30.h,
+                        width: 30.w,
+                        child: const Center(
+                            child: CircularProgressIndicator(
+                          color: AppColor.primaryColor,
+                        ))),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
               ),
@@ -82,7 +89,7 @@ class CustomCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SvgPicture.asset(AppImage.koinImage),
-                        const DocumentText(documentText: "100")
+                        DocumentText(documentText: rating)
                       ],
                     )
                   ],
