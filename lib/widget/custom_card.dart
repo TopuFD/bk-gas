@@ -52,7 +52,7 @@ class CustomCard extends StatelessWidget {
                     fit: BoxFit.cover,
                     
                     imageUrl: imagePath,
-                    placeholder: (context, url) => const CircularProgressIndicator(),
+                    placeholder: (context, url) => SizedBox(height: 30.h,width: 30.w,child: const Center(child:  CircularProgressIndicator(color: AppColor.primaryColor,))),
                     errorWidget: (context, url, error) =>const Icon(Icons.error),
                   ),
                 ),

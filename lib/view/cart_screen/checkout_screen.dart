@@ -40,8 +40,8 @@ class CheckoutScreen extends StatelessWidget {
               child: CheckOutCard(
                   imagePath: cartControleler.checkList[currentIndex][0],
                   title: cartControleler.checkList[currentIndex][1],
-                  price: cartControleler.checkList[currentIndex][2],
-                  weight: cartControleler.checkList[currentIndex][3],
+                  price: cartControleler.checkList[currentIndex][2].toString(),
+                  weight: cartControleler.checkList[currentIndex][3].toString(),
                   productCount: cartControleler.checkList[currentIndex][4]),
             ),
             SizedBox(
@@ -160,7 +160,7 @@ class CheckoutScreen extends StatelessWidget {
                     const DocumentText(documentText: "Total(9 items)"),
                     HeadingText(
                       headingText:
-                          "\$${int.tryParse(cartControleler.checkList[currentIndex][2])! * cartControleler.checkList[currentIndex][4].value}"
+                          "\$${int.tryParse(cartControleler.checkList[currentIndex][2].toString())! * cartControleler.checkList[currentIndex][4].value}"
                               .toString(),
                     )
                   ],
@@ -184,7 +184,7 @@ class CheckoutScreen extends StatelessWidget {
                     const DocumentText(documentText: "Sub Total"),
                     HeadingText(
                       headingText:
-                          "\$${int.tryParse(cartControleler.checkList[currentIndex][2])! * cartControleler.checkList[currentIndex][4].value}"
+                          "\$${int.tryParse(cartControleler.checkList[currentIndex][2].toString())! * cartControleler.checkList[currentIndex][4].value}"
                               .toString(),
                     )
                   ],

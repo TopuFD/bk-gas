@@ -57,8 +57,8 @@ class CartScreen extends StatelessWidget {
                       return CheckOutCard(
                           imagePath: data[0],
                           title: data[1],
-                          price: data[2],
-                          weight: data[3],
+                          price: data[2].toString(),
+                          weight: data[3].toString(),
                           productCount: data[4]);
                     }),
               );
