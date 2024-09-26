@@ -8,4 +8,6 @@ class AppImage {
   static const String visaImage = "assets/images/visa.png";
   static const String dialogImage = "assets/images/dialogImage.png";
   static const String orderImage = "assets/images/order.png";
+  static const String unitedKingdom = 'assets/images/united_kindom.png';
+  static const String bd = 'assets/images/bd.png';
 }
